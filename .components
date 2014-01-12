@@ -1,0 +1,9 @@
+---
+:orm: mongomapper
+:test: rspec
+:mock: none
+:script: none
+:renderer: slim
+:stylesheet: none
+:namespace: SseExamplePadrino
+:migration_format: number

@@ -1,0 +1,23 @@
+#log 
+
+form
+	input id='msg' placeholder='type message here...'
+	input#channel
+
+javascript:
+	channel = "#{params[:channel]}";
+
+coffeescript:
+	$("form").on "submit", (e) ->
+		channel_form_val = $("#channel").val()
+
+	  $.post "/broadcast/#{channel_form_val}", msg: $("#msg").val()
+
+	  $("#msg").val ""
+	  $("#msg").focus()
+	  e.preventDefault()
+
+	source = new EventSource("/subscribe/#{channel}")
+	source.addEventListener "message", ((event) ->
+	  log.innerText += "\n" + event.data
+	), false
